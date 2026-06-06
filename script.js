@@ -113,6 +113,54 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.target === modalOverlay) hideModal();
   });
 
+  const contactForm = document.querySelector('#contact-form');
+  const formError = document.querySelector('#form-error');
+
+  if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (formSuccess) {
+        formSuccess.textContent = '';
+        formSuccess.style.display = 'none';
+      }
+      if (formError) {
+        formError.textContent = '';
+        formError.style.display = 'none';
+      }
+
+      const formData = new FormData(contactForm);
+      try {
+        const response = await fetch(contactForm.action, {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+          },
+          body: formData,
+        });
+
+        if (response.ok) {
+          if (formSuccess) {
+            formSuccess.textContent = 'Thank you — your message has been sent successfully.';
+            formSuccess.style.display = 'block';
+          }
+          showModal();
+          contactForm.reset();
+        } else {
+          const data = await response.json();
+          if (formError) {
+            formError.textContent = data.error || 'There was a problem sending your message. Please try again later.';
+            formError.style.display = 'block';
+          }
+        }
+      } catch (error) {
+        if (formError) {
+          formError.textContent = 'Network error. Please check your connection and try again.';
+          formError.style.display = 'block';
+        }
+      }
+    });
+  }
+
   // Watch the Formspree success container and show modal when it becomes visible
   if (successEl) {
     const obs = new MutationObserver(() => {
