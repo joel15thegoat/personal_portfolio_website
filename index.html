@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Joel Paul | Cybersecurity Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="header">
+      <a href="#home" class="logo">
+        <span>Tech</span>Portfolio
+      </a>
+      <i class="bx bx-menu" id="menu-icon"></i>
+      <nav class="navbar">
+        <a href="#home" class="active">Home</a>
+        <a href="#about">About</a>
+        <a href="#achievements">Achievements</a>
+        <a href="#projects">Projects</a>
+        <a href="#research">Research</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a href="#contact" class="btn nav-btn">Hire Me</a>
+    </header>
+
+    <main>
+      <section class="home" id="home">
+        <div class="home-content">
+          <span class="section-label">Cybersecurity & Systems Portfolio</span>
+          <h1>Hi, I'm <span class="gradient-text">Joel Paul</span></h1>
+          <p>
+            O-Level student specialising in infrastructure security, defensive
+            systems, and applied cryptography. I build practical tools from live
+            packet capture to encrypted password vaults.
+          </p>
+          <div class="home-actions">
+            <a href="#contact" class="btn">Hire Me</a>
+            <a href="#projects" class="btn btn-outline">View Work</a>
+          </div>
+          <div class="social-icons">
+            <a href="https://github.com/joel15thegoat" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><i class="bx bxl-github"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="bx bxl-linkedin"></i></a>
+            <a href="#" aria-label="Twitter"><i class="bx bxl-twitter"></i></a>
+            <a href="#" aria-label="Instagram"><i class="bx bxl-instagram"></i></a>
+          </div>
+        </div>
+        <div class="home-image">
+          <div class="profile-ring"></div>
+          <img src="image.png" alt="Joel Paul portfolio screenshot" />
+        </div>
+      </section>
+
+      <section class="about" id="about">
+        <div class="about-image">
+          <img src="image.png" alt="About portfolio screenshot" />
+        </div>
+        <div class="about-content">
+          <span class="section-label">About Me</span>
+          <h2>Practical security engineering backed by leadership and resilience.</h2>
+          <p>
+            I focus on defensive security, system monitoring, and applied
+            cryptography. As a 3rd Sergeant in NCC and a Young Engineer Award
+            recipient, I bring teamwork, discipline, and practical problem solving.
+          </p>
+          <div class="about-highlights">
+            <div>
+              <strong>3rd Sergeant</strong>
+              <span>Leadership experience in team-based technical work.</span>
+            </div>
+            <div>
+              <strong>Young Engineer Award</strong>
+              <span>Recognised by Singapore Polytechnic for strong applied learning.</span>
+            </div>
+          </div>
+          <a href="#contact" class="btn">Let’s Connect</a>
+        </div>
+      </section>
+
+      <section class="achievements" id="achievements">
+        <div class="section-header">
+          <span class="section-label">Achievements</span>
+          <h2>My key milestones and enrichment highlights</h2>
+        </div>
+        <div class="grid-container">
+          <article class="card">
+            <i class="bx bx-award"></i>
+            <h3>Academic Achievement</h3>
+            <p>
+              Scholastic milestones, certifications, and university-level
+              recognition.
+            </p>
+            <a href="academic.html" class="view-more">View Academic Details</a>
+          </article>
+          <article class="card">
+            <i class="bx bx-briefcase-alt-2"></i>
+            <h3>Non-Academic Achievement</h3>
+            <p>
+              Leadership, design challenges, and extracurricular awards that
+              extend beyond the classroom.
+            </p>
+            <a href="non-academic.html" class="view-more">View Non-Academic Details</a>
+          </article>
+          <article class="card">
+            <i class="bx bx-trophy"></i>
+            <h3>Competitions & Enrichment</h3>
+            <p>
+              Hackathons, competitions, and training programs that shaped my
+              technical mindset.
+            </p>
+            <a href="competitions_and_enrichment.html" class="view-more">View Enrichment Details</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="projects" id="projects">
+        <div class="section-header">
+          <span class="section-label">Projects</span>
+          <h2>Featured work with a focus on UI, security, and tooling.</h2>
+        </div>
+        <div class="grid-container">
+          <article class="project-card">
+            <img src="ids_project_1.png" alt="Network intrusion detection system" />
+            <div class="project-info">
+              <h3>Network IDS & Traffic Analysis</h3>
+              <p>
+                Python-based intrusion detection with live packet capture,
+                signature matching, and structured alert reporting.
+              </p>
+              <a href="#" class="btn btn-small">Review Project</a>
+            </div>
+          </article>
+          <article class="project-card">
+            <img src="calc_project_2.png" alt="Scientific calculator project" />
+            <div class="project-info">
+              <h3>Scientific Calculator & Graphing</h3>
+              <p>
+                A math engine with real-time parsing, implicit multiplication,
+                degree-based trigonometry, and interactive plotting.
+              </p>
+              <a href="#" class="btn btn-small">Review Project</a>
+            </div>
+          </article>
+          <article class="project-card">
+            <img src="keylogger_attempt_project_3.png" alt="Secure keylogger research" />
+            <div class="project-info">
+              <h3>Secure Keylogger Research</h3>
+              <p>
+                Defender-focused endpoint monitoring using encrypted storage,
+                PBKDF2 key derivation, and steganography techniques.
+              </p>
+              <a href="#" class="btn btn-small">Review Project</a>
+            </div>
+          </article>
+          <article class="project-card">
+            <img src="password_manager_project_4.png" alt="Secure password manager" />
+            <div class="project-info">
+              <h3>Secure Password Manager</h3>
+              <p>
+                A client-side vault with master authentication, AES encryption,
+                and auto-clear clipboard protection.
+              </p>
+              <a href="#" class="btn btn-small">Review Project</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="research" id="research">
+        <div class="section-header">
+          <span class="section-label">Research</span>
+          <h2>Research work presented in a polished, easy-to-scan layout.</h2>
+        </div>
+        <div class="grid-container">
+          <article class="project-card research-card">
+            <div class="research-icon">
+              <i class="bx bx-shield"></i>
+            </div>
+            <div class="project-info">
+              <h3>Ransomware & Cryptocurrency</h3>
+              <p>
+                Analysis of WannaCry-style threats and defensive strategies for modern systems.
+              </p>
+              <a href="https://1drv.ms/p/c/1403a997a8017efd/IQA167FihLVsQ77RdYcjd6UqAVNqL796EE8l_3_QHUDdFBc" class="btn btn-small" target="_blank" rel="noreferrer">View Slides</a>
+            </div>
+          </article>
+          <article class="project-card research-card">
+            <div class="research-icon">
+              <i class="bx bx-cog"></i>
+            </div>
+            <div class="project-info">
+              <h3>Applied Defensive Systems</h3>
+              <p>
+                Research into secure system monitoring, traffic filtering, and defensive automation.
+              </p>
+              <a href="https://sgmoe-my.sharepoint.com/:p:/g/personal/joseph_joel_paul_students_edu_sg/IQC3zICuMBpcQrohkMLSmEZwAfJCwgaslhjIM1JJ7rz2U_o?e=VMaKxo" class="btn btn-small" target="_blank" rel="noreferrer">View Report</a>
+            </div>
+          </article>
+          <article class="project-card research-card">
+            <div class="research-icon">
+              <i class="bx bx-data"></i>
+            </div>
+            <div class="project-info">
+              <h3>Cryptography & Secure Storage</h3>
+              <p>
+                Technical review of AES-256-GCM, PBKDF2, and secure data isolation.
+              </p>
+              <a href="https://1drv.ms/p/c/1403a997a8017efd/IQCy1n_tIIT0So8zrYVIqf58AXRmMJ9zksBDNC3XEag-VbA" class="btn btn-small" target="_blank" rel="noreferrer">View Research</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="contact" id="contact">
+        <div class="section-header">
+          <span class="section-label">Contact</span>
+          <h2>Let’s build something meaningful together.</h2>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-text">
+            <p>
+              If you have a project, collaboration, or role that needs strong
+              cybersecurity thinking and practical implementation, send a message.
+            </p>
+            <div class="contact-details">
+              <div>
+                <strong>Email</strong>
+                <span>contact@joelpaul.tech</span>
+              </div>
+              <div>
+                <strong>Phone</strong>
+                <span>+65 9123 4567</span>
+              </div>
+            </div>
+          </div>
+          <form action="https://formspree.io/f/xkoaovke" method="POST" class="contact-form" id="contact-form">
+            <input type="hidden" name="_subject" value="Portfolio contact request" />
+            <!-- AJAX success / error messages (hidden by default) -->
+            <div id="form-success" data-fs-success class="form-message" style="display:none; margin-bottom:1rem; color:#8ef3c5;"></div>
+            <div id="form-error" data-fs-error class="form-message" style="display:none; margin-bottom:1rem; color:#ff8a8a;"></div>
+            <div class="input-row">
+              <input type="text" name="name" placeholder="Your name" required data-fs-field />
+              <input type="email" name="_replyto" placeholder="Your email" required data-fs-field />
+            </div>
+            <div class="input-row">
+              <input type="tel" name="phone" placeholder="Phone" data-fs-field />
+              <input type="text" name="subject" placeholder="Subject" data-fs-field />
+            </div>
+            <textarea name="message" rows="6" placeholder="Your message" data-fs-field></textarea>
+            <button type="submit" class="btn" data-fs-submit-btn>Send Message</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>© 2026 Joel Paul. Built with a tech-focused dark aesthetic.</p>
+      <div class="footer-links">
+        <a href="#home">Home</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </footer>
+
+    <script>
+      window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+      formspree('initForm', { formElement: '#contact-form', formId: 'xkoaovke' });
+    </script>
+    <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+    <!-- Inline thank-you modal -->
+    <div id="thankyou-modal" class="modal-overlay" style="display:none;">
+      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="thankyou-title">
+        <button class="modal-close" aria-label="Close">×</button>
+        <h3 id="thankyou-title">Thanks — message sent</h3>
+        <p>Your message has been received. I will reply to the email you provided.</p>
+        <div style="text-align:right; margin-top:0.5rem;"><button class="btn modal-ok">Close</button></div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
