@@ -563,3 +563,36 @@ body {
 .modal .btn.modal-ok {
   display: inline-block;
 }
+
+/* Badge styling for Credly embeds */
+.badge-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+.badge-item {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+.badge-img {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.35);
+}
+.badge-meta a {
+  color: var(--text-strong);
+  font-weight: 600;
+}
+.badge-meta .btn-small {
+  margin-top: 0.4rem;
+  padding: 0.45rem 0.8rem;
+}
+
+@media (max-width: 820px) {
+  .badge-list { flex-direction: column; }
+  .badge-img { width: 56px; height: 56px; }
+}
