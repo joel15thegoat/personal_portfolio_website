@@ -114,6 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   const contactForm = document.querySelector('#contact-form');
+  const formSuccess = document.querySelector('#form-success');
   const formError = document.querySelector('#form-error');
 
   if (contactForm) {
