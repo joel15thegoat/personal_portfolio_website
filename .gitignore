@@ -1,0 +1,9 @@
+# Ignore local temporary image files and screenshots
+achivement_summary*.jpg
+achivment_summary*.jpg
+Screenshot*.png
+
+# Ignore OS and editor files
+.DS_Store
+Thumbs.db
+.vscode/
