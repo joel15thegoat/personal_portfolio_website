@@ -1,17 +1,20 @@
 const menuIcon = document.querySelector('#menu-icon');
-const navbar = document.querySelector('.navbar');
-const navLinks = document.querySelectorAll('.navbar a');
+const navbar = document.querySelector('#navbar');
+const navLinks = document.querySelectorAll('#navbar a');
 const sections = document.querySelectorAll('section');
 
 menuIcon.addEventListener('click', () => {
+  const open = !navbar.classList.contains('active');
   menuIcon.classList.toggle('bx-x');
   navbar.classList.toggle('active');
+  menuIcon.setAttribute('aria-expanded', String(open));
 });
 
 navLinks.forEach((link) => {
   link.addEventListener('click', () => {
     navbar.classList.remove('active');
     menuIcon.classList.remove('bx-x');
+    menuIcon.setAttribute('aria-expanded', 'false');
   });
 });
 
@@ -39,6 +42,7 @@ window.addEventListener('scroll', () => {
   if (window.innerWidth <= 820) {
     navbar.classList.remove('active');
     menuIcon.classList.remove('bx-x');
+    menuIcon.setAttribute('aria-expanded', 'false');
   }
 });
 
@@ -86,7 +90,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Modal wiring
-  const successEl = document.querySelector('#form-success');
   const modalOverlay = document.querySelector('#thankyou-modal');
   const modal = modalOverlay ? modalOverlay.querySelector('.modal') : null;
   const modalClose = modalOverlay ? modalOverlay.querySelector('.modal-close') : null;
@@ -141,8 +144,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (response.ok) {
           if (formSuccess) {
-            formSuccess.textContent = 'Thank you — your message has been sent successfully.';
-            formSuccess.style.display = 'block';
+            formSuccess.textContent = '';
+            formSuccess.style.display = 'none';
           }
           showModal();
           contactForm.reset();
@@ -162,12 +165,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Watch the Formspree success container and show modal when it becomes visible
-  if (successEl) {
-    const obs = new MutationObserver(() => {
-      const visible = successEl.textContent && successEl.textContent.trim().length > 0 && getComputedStyle(successEl).display !== 'none';
-      if (visible) showModal();
-    });
-    obs.observe(successEl, { childList: true, characterData: true, subtree: true, attributes: true });
-  }
 });

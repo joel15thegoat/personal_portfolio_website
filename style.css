@@ -136,6 +136,7 @@ main {
 }
 section {
   padding: 6rem 5%;
+  scroll-margin-top: 140px;
 }
 .section-label {
   display: inline-block;
@@ -322,8 +323,32 @@ section {
   color: var(--accent-cyan);
   font-weight: 600;
 }
+.card,
+.project-card,
+.research-card,
+.project-info {
+  min-width: 0;
+}
+.card p,
+.project-info p {
+  overflow-wrap: anywhere;
+  word-wrap: break-word;
+  word-break: normal;
+}
+.card h3,
+.project-info h3 {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: normal;
+}
+.card,
+.project-card,
+.research-card {
+  height: auto;
+  min-height: 0;
+}
 .project-card {
-  overflow: hidden;
+  overflow: visible;
   display: grid;
   grid-template-columns: 140px 1fr;
   gap: 1.5rem;
@@ -332,6 +357,7 @@ section {
 .project-card img {
   width: 100%;
   height: 170px;
+  min-height: 170px;
   object-fit: cover;
   border-radius: 22px;
 }
@@ -484,13 +510,37 @@ section {
     display: block;
   }
   .nav-btn {
-    display: none;
+    display: inline-flex;
+    width: auto;
+    padding: 0.8rem 1.4rem;
+  }
+  .header {
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+  }
+  .project-card {
+    grid-template-columns: 1fr;
+  }
+  .project-card img {
+    height: auto;
+    min-height: 170px;
   }
   .contact-grid {
     gap: 2rem;
   }
   .input-row {
     grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 1024px) and (min-width: 821px) {
+  .project-card {
+    grid-template-columns: 120px 1fr;
+    gap: 1rem;
+  }
+  .project-card img {
+    height: 140px;
+    min-height: auto;
   }
 }
 @media (max-width: 520px) {
