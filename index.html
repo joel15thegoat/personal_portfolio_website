@@ -60,6 +60,7 @@
         </div>
       </section>
 
+      <!-- ==================== ABOUT SECTION (EXPANDABLE) ==================== -->
       <section class="about" id="about">
         <div class="about-image">
           <img src="image.png" alt="About portfolio screenshot" />
@@ -67,11 +68,39 @@
         <div class="about-content">
           <span class="section-label">About Me</span>
           <h2>Practical security engineering backed by leadership and resilience.</h2>
+
+          <!-- Short summary – always visible -->
           <p>
             I focus on defensive security, system monitoring, and applied
             cryptography. As a 3rd Sergeant in NCC and a Young Engineer Award
             recipient, I bring teamwork, discipline, and practical problem solving.
           </p>
+
+          <!-- Expandable personal journey -->
+          <details class="about-expand">
+            <summary class="about-summary">
+              <span>Read more about my journey</span>
+              <i class="bx bx-chevron-down about-arrow"></i>
+            </summary>
+            <div class="about-details-content">
+              <p>
+                Since I was young, I’ve been drawn to the world of technology – especially
+                hacking. A YouTube clip from the show <em>Mr. Robot</em>, where Elliot
+                exposes a criminal through hacking, first sparked my interest in coding.
+                It showed not only how hackers can use social engineering, but also the
+                real dangers of illegal hacking.
+              </p>
+              <p>
+                In my free time I dive into the history of cyber conflict: the first
+                cyberattack between Russia and Estonia, the Shadow Brokers leaking
+                zero‑day exploits from the “Equation Group”, and many more. These stories
+                deepened my passion for defensive security and ethical hacking – and
+                they continue to drive my self‑taught journey in building practical,
+                secure tools.
+              </p>
+            </div>
+          </details>
+
           <div class="about-highlights">
             <div>
               <strong>3rd Sergeant</strong>
@@ -237,8 +266,7 @@
         <div class="contact-grid">
           <div class="contact-text">
             <p>
-              If you have a project, collaboration, or role that needs strong
-              cybersecurity thinking and practical implementation, send a message.
+              If you have a project idea or would like to contact me, please message!
             </p>
             <div class="contact-details">
               <div>
