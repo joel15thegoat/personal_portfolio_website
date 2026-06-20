@@ -1,3 +1,71 @@
+/* ============================================================
+   TYPEWRITER EFFECT
+   ============================================================ */
+(function() {
+  const nameEl = document.getElementById('typewriter-name');
+  if (!nameEl) return;
+
+  const text = 'Joel Paul';        // the name to type
+  let index = 0;
+
+  function type() {
+    if (index < text.length) {
+      nameEl.textContent += text.charAt(index);
+      index++;
+      setTimeout(type, 120);       // speed (ms per character)
+    }
+  }
+
+  // Start typing after a short delay
+  window.addEventListener('load', () => {
+    setTimeout(type, 300);
+  });
+})();
+
+/* ============================================================
+   AUTO‑EXPAND ABOUT DETAILS ON SCROLL
+   ============================================================ */
+(function() {
+  const aboutDetails = document.getElementById('about-details');
+  if (!aboutDetails) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Open the details element with a tiny delay so the user sees it animate
+        setTimeout(() => {
+          aboutDetails.setAttribute('open', '');
+        }, 400);
+        observer.unobserve(entry.target);   // only once
+      }
+    });
+  }, { threshold: 0.3 });   // trigger when 30% of the about section is visible
+
+  observer.observe(aboutDetails);
+})();
+
+/* ============================================================
+   SCROLL REVEAL (FADE‑UP) OBSERVER
+   ============================================================ */
+(function() {
+  const revealElements = document.querySelectorAll('.reveal');
+
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        // Optionally stop observing after reveal, or keep it for future re‑entrance
+        // revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  revealElements.forEach(el => revealObserver.observe(el));
+})();
+
+/* ============================================================
+   MOBILE MENU TOGGLE
+   ============================================================ */
 const menuIcon = document.querySelector('#menu-icon');
 const navbar = document.querySelector('#navbar');
 const navLinks = document.querySelectorAll('#navbar a');
@@ -18,27 +86,34 @@ navLinks.forEach((link) => {
   });
 });
 
+/* ============================================================
+   SCROLL SPY (ACTIVE LINK) & MOBILE MENU AUTO‑CLOSE
+   ============================================================ */
 window.addEventListener('scroll', () => {
   const scrollY = window.pageYOffset;
 
-  sections.forEach((section) => {
-    const sectionTop = section.offsetTop - 140;
-    const sectionHeight = section.offsetHeight;
-    const sectionId = section.getAttribute('id');
+  // Only run active‑link highlighting if there are hash‑based navbar links
+  const hashLinks = document.querySelectorAll('.navbar a[href^="#"]');
+  if (hashLinks.length > 0) {
+    sections.forEach((section) => {
+      const sectionTop = section.offsetTop - 140;
+      const sectionHeight = section.offsetHeight;
+      const sectionId = section.getAttribute('id');
 
-    if (!sectionId) return;
+      if (!sectionId) return;
 
-    const activeLink = document.querySelector(`.navbar a[href="#${sectionId}"]`);
+      const activeLink = document.querySelector(`.navbar a[href="#${sectionId}"]`);
+      if (!activeLink) return;
 
-    if (!activeLink) return;
+      if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+        activeLink.classList.add('active');
+      } else {
+        activeLink.classList.remove('active');
+      }
+    });
+  }
 
-    if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
-      activeLink.classList.add('active');
-    } else {
-      activeLink.classList.remove('active');
-    }
-  });
-
+  // Close mobile menu on scroll (all pages)
   if (window.innerWidth <= 820) {
     navbar.classList.remove('active');
     menuIcon.classList.remove('bx-x');
@@ -46,16 +121,16 @@ window.addEventListener('scroll', () => {
   }
 });
 
-// Page transition for internal navigation (fade-out before navigating)
+/* ============================================================
+   PAGE TRANSITIONS & INTERNAL NAVIGATION
+   ============================================================ */
 document.addEventListener('DOMContentLoaded', () => {
-  // attach to links that navigate to another page in this site
+
   document.querySelectorAll('a[href]').forEach((link) => {
     const href = link.getAttribute('href');
     if (!href) return;
-    // skip external links and mailto
     if (href.startsWith('mailto:') || href.startsWith('http')) return;
 
-    // Anchor links: smooth-scroll in-page
     if (href.startsWith('#')) {
       link.addEventListener('click', (e) => {
         e.preventDefault();
@@ -63,17 +138,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const targetEl = document.getElementById(id);
         if (targetEl) {
           targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          // update URL without jumping
           history.pushState(null, '', href);
         } else {
-          // fallback to default behavior
           window.location.hash = href;
         }
       });
       return;
     }
 
-    // Internal page navigation: fade-out then navigate
     link.addEventListener('click', (e) => {
       e.preventDefault();
       const target = link.getAttribute('href');
@@ -84,12 +156,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // remove fade-out if present (enter animation)
   requestAnimationFrame(() => {
     document.body.classList.remove('fade-out');
   });
 
-  // Modal wiring
+  /* ============================================================
+     THANK‑YOU MODAL
+     ============================================================ */
   const modalOverlay = document.querySelector('#thankyou-modal');
   const modal = modalOverlay ? modalOverlay.querySelector('.modal') : null;
   const modalClose = modalOverlay ? modalOverlay.querySelector('.modal-close') : null;
@@ -98,7 +171,6 @@ document.addEventListener('DOMContentLoaded', () => {
   function showModal() {
     if (!modalOverlay || !modal) return;
     modalOverlay.style.display = 'grid';
-    // allow CSS to animate
     requestAnimationFrame(() => modal.classList.add('show'));
   }
 
@@ -116,6 +188,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.target === modalOverlay) hideModal();
   });
 
+  /* ============================================================
+     CONTACT FORM (AJAX)
+     ============================================================ */
   const contactForm = document.querySelector('#contact-form');
   const formSuccess = document.querySelector('#form-success');
   const formError = document.querySelector('#form-error');
@@ -143,10 +218,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         if (response.ok) {
-          if (formSuccess) {
-            formSuccess.textContent = '';
-            formSuccess.style.display = 'none';
-          }
           showModal();
           contactForm.reset();
         } else {
@@ -164,5 +235,4 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
-
 });
