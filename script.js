@@ -43,7 +43,7 @@
 })();
 
 /* ============================================================
-   SCROLL REVEAL (FADE‑UP) – existing .reveal class
+   SCROLL REVEAL (FADE‑UP) OBSERVER
    ============================================================ */
 (function() {
   const revealElements = document.querySelectorAll('.reveal');
@@ -52,53 +52,13 @@
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
+        // Optionally stop observing after reveal, or keep it for future re‑entrance
+        // revealObserver.unobserve(entry.target);
       }
     });
   }, { threshold: 0.15 });
 
   revealElements.forEach(el => revealObserver.observe(el));
-})();
-
-/* ============================================================
-   NEW ANIMATIONS OBSERVER
-   Handles: .cascade-item, .slide-in-text, .reveal-mask, .scale-blur
-   ============================================================ */
-(function() {
-  // ----- Cascade items (staggered) -----
-  const cascadeContainers = document.querySelectorAll('.cascade-container');
-  cascadeContainers.forEach(container => {
-    const items = container.querySelectorAll('.cascade-item');
-    if (!items.length) return;
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          // Trigger cascade: add 'loaded' to each item with delay
-          items.forEach((item, index) => {
-            setTimeout(() => {
-              item.classList.add('loaded');
-            }, index * 100); // 100ms between each
-          });
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.15 });
-
-    observer.observe(container);
-  });
-
-  // ----- Other single‑element animations: slide-in, reveal-mask, scale-blur -----
-  const singleAnimated = document.querySelectorAll('.slide-in-text, .reveal-mask, .scale-blur');
-  const singleObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('loaded');
-        singleObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.15 });
-
-  singleAnimated.forEach(el => singleObserver.observe(el));
 })();
 
 /* ============================================================
@@ -130,6 +90,7 @@ navLinks.forEach((link) => {
 window.addEventListener('scroll', () => {
   const scrollY = window.pageYOffset;
 
+  // Only run active‑link highlighting if there are hash‑based navbar links
   const hashLinks = document.querySelectorAll('.navbar a[href^="#"]');
   if (hashLinks.length > 0) {
     sections.forEach((section) => {
@@ -150,6 +111,7 @@ window.addEventListener('scroll', () => {
     });
   }
 
+  // Close mobile menu on scroll (all pages)
   if (window.innerWidth <= 820) {
     navbar.classList.remove('active');
     menuIcon.classList.remove('bx-x');
