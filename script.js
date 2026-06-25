@@ -5,18 +5,17 @@
   const nameEl = document.getElementById('typewriter-name');
   if (!nameEl) return;
 
-  const text = 'Joel Paul';        // the name to type
+  const text = 'Joel Paul';
   let index = 0;
 
   function type() {
     if (index < text.length) {
       nameEl.textContent += text.charAt(index);
       index++;
-      setTimeout(type, 120);       // speed (ms per character)
+      setTimeout(type, 120);
     }
   }
 
-  // Start typing after a short delay
   window.addEventListener('load', () => {
     setTimeout(type, 300);
   });
@@ -32,20 +31,19 @@
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        // Open the details element with a tiny delay so the user sees it animate
         setTimeout(() => {
           aboutDetails.setAttribute('open', '');
         }, 400);
-        observer.unobserve(entry.target);   // only once
+        observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.3 });   // trigger when 30% of the about section is visible
+  }, { threshold: 0.3 });
 
   observer.observe(aboutDetails);
 })();
 
 /* ============================================================
-   SCROLL REVEAL (FADE‑UP) OBSERVER
+   SCROLL REVEAL (FADE‑UP) – existing .reveal class
    ============================================================ */
 (function() {
   const revealElements = document.querySelectorAll('.reveal');
@@ -54,13 +52,53 @@
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
-        // Optionally stop observing after reveal, or keep it for future re‑entrance
-        // revealObserver.unobserve(entry.target);
       }
     });
   }, { threshold: 0.15 });
 
   revealElements.forEach(el => revealObserver.observe(el));
+})();
+
+/* ============================================================
+   NEW ANIMATIONS OBSERVER
+   Handles: .cascade-item, .slide-in-text, .reveal-mask, .scale-blur
+   ============================================================ */
+(function() {
+  // ----- Cascade items (staggered) -----
+  const cascadeContainers = document.querySelectorAll('.cascade-container');
+  cascadeContainers.forEach(container => {
+    const items = container.querySelectorAll('.cascade-item');
+    if (!items.length) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Trigger cascade: add 'loaded' to each item with delay
+          items.forEach((item, index) => {
+            setTimeout(() => {
+              item.classList.add('loaded');
+            }, index * 100); // 100ms between each
+          });
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    observer.observe(container);
+  });
+
+  // ----- Other single‑element animations: slide-in, reveal-mask, scale-blur -----
+  const singleAnimated = document.querySelectorAll('.slide-in-text, .reveal-mask, .scale-blur');
+  const singleObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('loaded');
+        singleObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  singleAnimated.forEach(el => singleObserver.observe(el));
 })();
 
 /* ============================================================
@@ -92,7 +130,6 @@ navLinks.forEach((link) => {
 window.addEventListener('scroll', () => {
   const scrollY = window.pageYOffset;
 
-  // Only run active‑link highlighting if there are hash‑based navbar links
   const hashLinks = document.querySelectorAll('.navbar a[href^="#"]');
   if (hashLinks.length > 0) {
     sections.forEach((section) => {
@@ -113,7 +150,6 @@ window.addEventListener('scroll', () => {
     });
   }
 
-  // Close mobile menu on scroll (all pages)
   if (window.innerWidth <= 820) {
     navbar.classList.remove('active');
     menuIcon.classList.remove('bx-x');
