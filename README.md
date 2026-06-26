@@ -1,4 +1,4 @@
-# Joel Paul — Cybersecurity Portfolio
+# Cybersecurity Portfolio
  
 > my portfolio(an o level student ) for  Polytechnic Early Admissions Exercise(poly eae)
  
