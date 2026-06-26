@@ -35,7 +35,7 @@ A personal portfolio site built to show my whole portfolio for eae (it encompass
 - [Google Fonts](https://fonts.google.com/) — Poppins
 - [Boxicons](https://boxicons.com/) — icon set
 - [Formspree](https://formspree.io/) — contact form backend
-## 📤 Deploying (GitHub Pages)
+## Deploying (GitHub Pages)
 1. Push this folder to a GitHub repository
 2. Go to **Settings → Pages**
 3. Set the source to the `main` branch, root folder
@@ -44,7 +44,7 @@ A personal portfolio site built to show my whole portfolio for eae (it encompass
 - Update copy and highlight cards directly in the relevant HTML file
 - Swap a certificate/medal photo by replacing the file but keeping the same filename — every page's `<img src>` already points to these exact names
 - Add a new GitHub project by duplicating a `.project-card` block in `index.html`'s Projects section
-## 📌 To Do
+## To Do
 - [ ] Add `quantum-mindmap.jpg` — referenced by the Research section's Quantum Computing Mind Map card, not yet supplied
 - [ ] Add real LinkedIn / Twitter / Instagram links in the hero social icons (currently `#`)
 ## licence
