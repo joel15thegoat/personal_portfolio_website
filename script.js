@@ -5,18 +5,17 @@
   const nameEl = document.getElementById('typewriter-name');
   if (!nameEl) return;
 
-  const text = 'Joel Paul';        // the name to type
+  const text = 'Joel Paul';
   let index = 0;
 
   function type() {
     if (index < text.length) {
       nameEl.textContent += text.charAt(index);
       index++;
-      setTimeout(type, 120);       // speed (ms per character)
+      setTimeout(type, 120);
     }
   }
 
-  // Start typing after a short delay
   window.addEventListener('load', () => {
     setTimeout(type, 300);
   });
@@ -32,14 +31,13 @@
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        // Open the details element with a tiny delay so the user sees it animate
         setTimeout(() => {
           aboutDetails.setAttribute('open', '');
         }, 400);
-        observer.unobserve(entry.target);   // only once
+        observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.3 });   // trigger when 30% of the about section is visible
+  }, { threshold: 0.3 });
 
   observer.observe(aboutDetails);
 })();
