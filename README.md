@@ -2,13 +2,13 @@
  
 > my portfolio(an o level student ) for  Polytechnic Early Admissions Exercise(poly eae)
  
-## 🌐 Live Site
+## Live Site
   [click here!]( https://joel15thegoat.github.io/personal_portfolio_website/ )
  
-## 📖 About
+## About
 A personal portfolio site built to show my whole portfolio for eae (it encompasses whatever I have done throughout my 4 years in secondary school)
  
-## ✨ Features
+## Features
 - Single-page home (`index.html`) with landing page, about, achievements overview, projects, research, testimonials, and contact form
 - Dedicated sub-pages for **Academic Achievement**, **Non-Academic Achievement**, and **Competitions & Enrichment**, each with a certificate/photo gallery
 - Typewriter hero name, scroll-reveal animations, mobile nav, page-transition fade
@@ -16,7 +16,7 @@ A personal portfolio site built to show my whole portfolio for eae (it encompass
 - Embedded Credly badges (Junior Cybersecurity Analyst, Introduction to Cybersecurity)
 - Working contact form via Formspree, with a custom thank-you modal
 - Downloadable testimonial PDF
-## 🗂️ Project Structure
+## Project Structure
 ```
 .
 ├── index.html                          # Home: landing page, about, achievements, projects, research, testimonials, contact
@@ -30,7 +30,7 @@ A personal portfolio site built to show my whole portfolio for eae (it encompass
 └── .gitignore
 ```
  
-## 🛠️ Tech Stack
+## Tech Stack
 - HTML5, CSS3 (custom properties, CSS grid/flexbox), vanilla JavaScript
 - [Google Fonts](https://fonts.google.com/) — Poppins
 - [Boxicons](https://boxicons.com/) — icon set
@@ -40,7 +40,7 @@ A personal portfolio site built to show my whole portfolio for eae (it encompass
 2. Go to **Settings → Pages**
 3. Set the source to the `main` branch, root folder
 4. Your site will be live at `https://<username>.github.io/<repo-name>/`
-## ✏️ Customization
+##  Customization
 - Update copy and highlight cards directly in the relevant HTML file
 - Swap a certificate/medal photo by replacing the file but keeping the same filename — every page's `<img src>` already points to these exact names
 - Add a new GitHub project by duplicating a `.project-card` block in `index.html`'s Projects section
@@ -52,9 +52,9 @@ A personal portfolio site built to show my whole portfolio for eae (it encompass
 This project is licensed under the MIT License - feel free to fork, clone, and use the underlying structure, layout, and logic for your own portfolio.
 
 **For the Content (All personal photos, profile pictures, certificate images, written articles, and case study copy):**
-All rights are reserved. You are strictly prohibited from copying, redistributing, or using my personal likeness, documents, or written words in your own projects.
+All rights are reserved. You are not allowed to copy, redistribute, or use my personal likeness, documents, or written words in your own projects.
 
-You are 100% welcome to use this repository as a structural reference to build your own portfolio.
-But if I catch you hotlinking my photos, scraping my "About Me" text, or passing off my certificates as yours—I *will*  **hunt you down and skin you alive with a rusty butter knife.**
+You are welcome to use this repository as a reference to build your own portfolio.
+But if I catch you using my photos, or passing off my certificates as yours—I *will*  **hunt you down and skin you alive with a rusty butter knife.**
 
-(Seriously though: I check my network requests. Please just swap in your own awesome content and build something cool. Thanks!)
+(Seriously, though:  Please swap in your own awesome content and build something cool. Thanks!)
