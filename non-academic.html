@@ -16,6 +16,118 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
+    <style>
+      /* ---------- Certificate card styles ---------- */
+      .cert-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1.2rem;
+      }
+      .cert-card {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 16px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0.8rem 0.8rem 1rem;
+        transition: transform 0.25s, border-color 0.25s;
+      }
+      .cert-card:hover {
+        transform: translateY(-5px);
+        border-color: rgba(0, 229, 255, 0.35);
+      }
+      .cert-card img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+        object-fit: cover;
+        aspect-ratio: 3/4; /* portrait ratio for consistency */
+        margin-bottom: 0.6rem;
+      }
+      .cert-card .view-btn {
+        background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+        color: #fff;
+        border: none;
+        border-radius: 999px;
+        padding: 0.6rem 1.2rem;
+        font-weight: 600;
+        font-size: 0.8rem;
+        letter-spacing: 0.02em;
+        cursor: pointer;
+        transition: box-shadow 0.25s, transform 0.2s;
+        width: 100%;
+        text-align: center;
+      }
+      .cert-card .view-btn:hover {
+        box-shadow: 0 0 20px rgba(0, 229, 255, 0.4);
+        transform: scale(1.02);
+      }
+
+      /* ---------- Lightbox Modal ---------- */
+      .img-modal {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.85);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 2000;
+        padding: 1rem;
+        opacity: 0;
+        transition: opacity 0.25s ease;
+      }
+      .img-modal.show {
+        display: flex;
+        opacity: 1;
+      }
+      .img-modal img {
+        max-width: 95%;
+        max-height: 90vh;
+        border-radius: 12px;
+        border: 2px solid rgba(255, 255, 255, 0.15);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+      }
+      .img-modal .close-modal {
+        position: absolute;
+        top: 1.2rem;
+        right: 1.5rem;
+        background: rgba(255, 255, 255, 0.15);
+        border: none;
+        color: #fff;
+        font-size: 1.8rem;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background 0.25s;
+      }
+      .img-modal .close-modal:hover {
+        background: rgba(255, 255, 255, 0.3);
+      }
+
+      /* Mobile tweaks */
+      @media (max-width: 600px) {
+        .cert-grid {
+          grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+        }
+        .cert-card .view-btn {
+          padding: 0.5rem 0.8rem;
+          font-size: 0.75rem;
+        }
+        .img-modal .close-modal {
+          top: 0.8rem;
+          right: 0.8rem;
+          font-size: 1.5rem;
+          width: 35px;
+          height: 35px;
+        }
+      }
+    </style>
   </head>
   <body>
     <header class="header">
@@ -34,19 +146,49 @@
     <main>
       <section class="about" style="padding-top: 120px;">
         <div class="about-image reveal">
-           <!-- Gallery of Non-Academic Certificates -->
-           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.2rem;">
-             <img src="cert_purple_carnival.jpg" alt="Purple Carnival Certificate" style="border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
-             <img src="2024_ns_men_vidio_making_participation_cert.jpeg" alt="Appreciating NSmen Video Competition - Certificate of Participation" style="border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
-             <img src="cert_safra_nsmen.jpg" alt="SAFRA NSmen Video Competition Medal" style="border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
-             <img src="cert_bible_quiz.jpg" alt="Bible Quiz 1st Place" style="border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
-             <img src="medal_basketball.jpg" alt="Inter-Class Basketball Medal" style="border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
-             <img src="medal_massrun.jpg" alt="Mass Run Medals" style="border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
-             <img src="sec2_massrun_7th_place.jpeg" alt="Mass Run 2024 - Sec 2 Boys, 7th Place" style="border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
-             <img src="sec4_mass_run_9th.jpeg" alt="Mass Run 2026 - Sec 4/5 Boys, 9th Place" style="border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
-             <img src="medal_gold.jpg" alt="Gold Medals & Trophies" style="border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
-             <img src="marymount_generational_relay.jpeg" alt="Marymount SG60 Generation Relay" style="border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); object-fit: cover; height: 200px;">
-           </div>
+          <!-- Certificate cards with View button -->
+          <div class="cert-grid">
+            <div class="cert-card">
+              <img src="cert_purple_carnival.jpg" alt="Purple Carnival Certificate" loading="lazy" />
+              <button class="view-btn" data-img="cert_purple_carnival.jpg">View Certificate</button>
+            </div>
+            <div class="cert-card">
+              <img src="2024_ns_men_vidio_making_participation_cert.jpeg" alt="Appreciating NSmen Video Competition - Certificate of Participation" loading="lazy" />
+              <button class="view-btn" data-img="2024_ns_men_vidio_making_participation_cert.jpeg">View Certificate</button>
+            </div>
+            <div class="cert-card">
+              <img src="cert_safra_nsmen.jpg" alt="SAFRA NSmen Video Competition Medal" loading="lazy" />
+              <button class="view-btn" data-img="cert_safra_nsmen.jpg">View Certificate</button>
+            </div>
+            <div class="cert-card">
+              <img src="cert_bible_quiz.jpg" alt="Bible Quiz 1st Place" loading="lazy" />
+              <button class="view-btn" data-img="cert_bible_quiz.jpg">View Certificate</button>
+            </div>
+            <div class="cert-card">
+              <img src="medal_basketball.jpg" alt="Inter-Class Basketball Medal" loading="lazy" />
+              <button class="view-btn" data-img="medal_basketball.jpg">View Certificate</button>
+            </div>
+            <div class="cert-card">
+              <img src="medal_massrun.jpg" alt="Mass Run Medals" loading="lazy" />
+              <button class="view-btn" data-img="medal_massrun.jpg">View Certificate</button>
+            </div>
+            <div class="cert-card">
+              <img src="sec2_massrun_7th_place.jpeg" alt="Mass Run 2024 - Sec 2 Boys, 7th Place" loading="lazy" />
+              <button class="view-btn" data-img="sec2_massrun_7th_place.jpeg">View Certificate</button>
+            </div>
+            <div class="cert-card">
+              <img src="sec4_mass_run_9th.jpeg" alt="Mass Run 2026 - Sec 4/5 Boys, 9th Place" loading="lazy" />
+              <button class="view-btn" data-img="sec4_mass_run_9th.jpeg">View Certificate</button>
+            </div>
+            <div class="cert-card">
+              <img src="medal_gold.jpg" alt="Gold Medals & Trophies" loading="lazy" />
+              <button class="view-btn" data-img="medal_gold.jpg">View Certificate</button>
+            </div>
+            <div class="cert-card">
+              <img src="marymount_generational_relay.jpeg" alt="Marymount SG60 Generation Relay" loading="lazy" style="object-fit: cover; height: auto;" />
+              <button class="view-btn" data-img="marymount_generational_relay.jpeg">View Certificate</button>
+            </div>
+          </div>
         </div>
         <div class="about-content reveal">
           <span class="section-label">Non-Academic Achievement</span>
@@ -166,6 +308,50 @@
       </section>
     </main>
 
+    <!-- Full‑screen image modal -->
+    <div class="img-modal" id="imgModal">
+      <button class="close-modal" id="closeModal">&times;</button>
+      <img src="" alt="Certificate preview" id="modalImage" />
+    </div>
+
     <script src="script.js"></script>
+    <script>
+      /* ---------- Lightbox logic ---------- */
+      (function() {
+        const modal = document.getElementById('imgModal');
+        const modalImg = document.getElementById('modalImage');
+        const closeBtn = document.getElementById('closeModal');
+
+        // Open modal when any "View Certificate" button is clicked
+        document.querySelectorAll('.view-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const imgSrc = btn.getAttribute('data-img');
+            if (imgSrc) {
+              modalImg.src = imgSrc;
+              modal.classList.add('show');
+            }
+          });
+        });
+
+        // Close on X button
+        closeBtn.addEventListener('click', () => {
+          modal.classList.remove('show');
+        });
+
+        // Close when clicking outside the image
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) {
+            modal.classList.remove('show');
+          }
+        });
+
+        // Close with Escape key (desktop convenience)
+        window.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && modal.classList.contains('show')) {
+            modal.classList.remove('show');
+          }
+        });
+      })();
+    </script>
   </body>
 </html>
